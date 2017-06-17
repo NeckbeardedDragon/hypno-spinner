@@ -16,7 +16,7 @@ function setup() {
     for(var i = 0; i < notes.length; i++){
         var c = color((notes[i]%12)*30,100,100);
         var c = color(0,0,25*(notes[i]%12)/3);
-        orbs.push(new Orb(x,y,rad-i*rinc,2000/(i+1),c,midicps(notes[i]),0.1));
+        orbs.push(new Orb(x,y,rad-i*rinc,2000/(i+1),c,midicps(notes[i]),0.1,i));
     }
 }
 
@@ -100,7 +100,7 @@ class Orb {
     }
 
     step() {
-        stroke(this.color);
+        stroke((brightness(this.color)+(50/PI)*this.ang)%100);
         strokeWeight(20);
         line(this.xpos,this.ypos,this.lxpos,this.lypos);
         this.life += 1;
